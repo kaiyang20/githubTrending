@@ -2,7 +2,7 @@
 name: Weekly Github Trending
 on:
   schedule:
-    # UTC周一0点 = 北京时间周一早上8点
+    # UTC周一0点 = 北京时间周一早上8点自动爬取周榜
     - cron: "0 0 * * 1"
   workflow_dispatch:
 
@@ -25,6 +25,8 @@ jobs:
 
       - name: Run weekly trending scraper
         run: |
+          # 先清空README，只保留标题，避免堆积往年历史数据
+          echo "# GitHub 本周热门开源项目 Weekly Trending" > README.md
           python scraper.py --since weekly
 
       - name: Commit & Push generated files
