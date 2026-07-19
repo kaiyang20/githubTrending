@@ -4,7 +4,7 @@ name: Daily Github Trending
 
 on:
   schedule:
-    - cron: "0 2 * * *"
+   - cron: "0 0 * * 1"
   workflow_dispatch:
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
         
     - name: Run Scraper
       run: |
-        python scraper.py
+       python scraper.py --since weekly
 
     # Runs a set of commands using the runners shell
     - name: Push to origin master
